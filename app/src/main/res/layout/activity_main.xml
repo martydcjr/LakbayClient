@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp_pc.lakbayclient.MainActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@mipmap/loginscreen" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/formlogo">
+
+    <ImageView
+
+        android:layout_height="170dp"
+        android:layout_width="170dp"
+        android:layout_gravity="center"
+        android:src="@drawable/lakbaywhite2"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+</LinearLayout>
+
+
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/formlogo"
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
+            android:background="@drawable/login_white_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView3"
+                android:layout_below="@+id/formlogo"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingTop="10dp"
+                android:text="Get Started"
+                android:textColor="@android:color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:text="Enter your deatails to get you started"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:elevation="20dp"
+                android:background="@drawable/rounded_white"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/clientEmail"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-15dp"
+                    android:textSize="15sp"
+
+                    app:met_singleLineEllipsis="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_primaryColor="@color/colorPrimary"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:elevation="20dp"
+                android:background="@drawable/rounded_white"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/clientPass"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-15dp"
+                    android:textSize="15sp"
+
+                    app:met_singleLineEllipsis="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_primaryColor="@color/colorPrimary"/>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/showPass"
+                android:text="Show Password"
+
+                android:textSize="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="10dp"/>
+
+
+            <Button
+                android:id="@+id/btn_signin"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/signin_button"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="Sign in"
+                android:textColor="@android:color/white"
+                android:textStyle="normal" />
+
+
+                <TextView
+                    android:id="@+id/noAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don't have an account?"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:onClick="reg"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Register Here"
+                    android:textColor="#fa4b5a"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    />
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView">
+
+
+
+    </LinearLayout>
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_register"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="53dp"-->
+        <!--android:layout_below="@+id/textView3"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@drawable/register_button"-->
+        <!--android:gravity="center"-->
+        <!--android:paddingLeft="50dp"-->
+        <!--android:paddingRight="50dp"-->
+        <!--android:text="Register"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textStyle="normal"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+
+
+</android.support.constraint.ConstraintLayout>

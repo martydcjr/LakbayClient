@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp_pc.lakbayclient.RegistrationActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <ImageView
+
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="661dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/loginscreen" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+
+            android:background="@drawable/login_white_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView3"
+                android:layout_below="@+id/formlogo"
+                android:paddingBottom="30dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="15dp"
+                android:paddingTop="30dp"
+                android:text="Enter your information"
+                android:textStyle="bold"
+                android:textColor="#bb000010"
+                android:textSize="25sp" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:elevation="20dp"
+                android:background="@drawable/rounded_white"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etfname"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="First Name"
+                    android:inputType="textAutoComplete"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-15dp"
+                    android:textSize="15sp"
+
+                    app:met_singleLineEllipsis="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_primaryColor="@color/colorPrimary"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:elevation="20dp"
+                android:background="@drawable/rounded_white"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etlname"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="Last Name"
+                    android:inputType="textAutoComplete"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-15dp"
+                    android:textSize="15sp"
+
+                    app:met_singleLineEllipsis="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_primaryColor="@color/colorPrimary"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:elevation="20dp"
+                android:background="@drawable/rounded_white"
+                >
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/mnumber"
+                    android:digits="0123456789"
+                    android:hint="Mobile Number"
+                    android:inputType="number"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-15dp"
+                    android:textSize="15sp"
+
+                    app:met_singleLineEllipsis="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_baseColor="@color/colorPrimary"
+                    app:met_primaryColor="@color/colorPrimary"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:elevation="20dp"
+                >
+                <TextView
+                    android:id="@+id/bdate"
+                    android:hint="Birth Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/card_background"
+                    android:textColor="#000000"
+                    android:textSize="15dp"
+
+                    android:drawableLeft="@drawable/ic_calendar"
+
+
+                    />
+            </android.support.v7.widget.CardView>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:paddingEnd="30dp"
+                android:paddingStart="40dp"
+                android:paddingTop="10dp"
+                android:text="By continuing, I confirm that I have read and agree to the Terms and Conditions and Privacy Policy."
+                android:textAlignment="viewStart"
+                android:textColor="#bb000010"
+                android:textSize="12sp" />
+
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/signin_button"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:text="Submit"
+                android:textColor="@android:color/white"
+                android:textStyle="normal"
+
+
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,572 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp_pc.lakbayclient.HomeFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <!-- TODO: Update blank fragment layout -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_bottom"
+            android:elevation="1dp">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:map="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+
+                tools:context="com.example.hp_pc.lakbayclient.MapsActivity" />
+
+        </RelativeLayout>
+
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:elevation="10dp">
+
+            <fragment
+                android:id="@+id/place_autocomplete_fragment"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </android.support.v7.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/ic_gps"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/search"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/white_circle"
+            android:elevation="10dp"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_gps" />
+
+
+        <RelativeLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/white_box"
+            android:elevation="10dp">
+
+            <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+            <RelativeLayout
+                android:id="@+id/switch2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/white_box"
+                android:elevation="10dp"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/aa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/bb"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp">
+
+                    <RelativeLayout
+                        android:id="@+id/info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/white_box"
+                        android:elevation="10dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp"
+                        android:paddingTop="5dp"
+
+                        >
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/userImage"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginRight="10dp"
+                            android:padding="10dp"
+                            android:src="@mipmap/default_user" />
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/userImage"
+                            android:hint="Name"
+                            android:paddingTop="5dp"
+                            android:textSize="15dp"
+
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvName"
+                            android:layout_toRightOf="@+id/userImage"
+                            android:hint="Phone Number"
+                            android:paddingTop="5dp"
+                            android:textSize="14dp" />
+
+                        <RatingBar
+                            android:id="@+id/ratingBar"
+                            style="@style/Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvPhone"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/userImage"
+                            android:numStars="5"
+                            android:stepSize="0.1"
+                            android:theme="@style/RatingBar"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/tvCar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ratingBar"
+                            android:layout_toRightOf="@+id/userImage"
+                            android:hint="Car"
+                            android:paddingTop="5dp"
+                            android:text="Price:"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/tvPaythrough"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/tvName"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="28dp"
+                            android:text="PAY AS" />
+
+                        <!--<RelativeLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true">-->
+
+                        <!--&lt;!&ndash;<ProgressBar&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/pBar"&ndash;&gt;-->
+                        <!--&lt;!&ndash;style="?android:attr/progressBarStyle"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:visibility="gone"/>&ndash;&gt;-->
+
+                        <!--</RelativeLayout>-->
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/bb"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_above="@+id/cc"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:id="@+id/driverStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="13dp"
+
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <Button
+                        android:id="@+id/cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/register_button"
+                        android:elevation="10dp"
+                        android:text="CANCEL LAKBAY"
+                        android:textColor="@android:color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+            <RelativeLayout
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="1dp"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/a"
+                    android:layout_width="match_parent"
+                    android:layout_height="105dp"
+                    android:layout_above="@+id/b"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/l1"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/single"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/single"
+                            android:elevation="10dp"
+                            android:padding="4dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/lakbay_single" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center"
+                            android:text="Lakbay Single" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/l2"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true">
+
+                        <ImageButton
+                            android:id="@+id/family"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/single"
+                            android:elevation="10dp"
+                            android:padding="4dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/lakbay_family" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:text="Lakbay Family" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/l3"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true">
+
+                        <ImageButton
+                            android:id="@+id/barkada"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/single"
+                            android:elevation="10dp"
+                            android:padding="4dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/lakbay_barkada" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:text="Lakbay Barkada" />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/b"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_above="@+id/c"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="15dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="5dp">
+
+
+                    <ImageView
+                        android:id="@+id/ic_payment_method"
+                        android:layout_width="34dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="30dp"
+                        android:maxHeight="10dp"
+                        android:maxWidth="10dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_action_name" />
+
+                    <TextView
+                        android:id="@+id/cash"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="72dp"
+                        android:gravity="center_vertical"
+                        android:text="Cash"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignBaseline="@+id/cash"
+
+                        android:layout_toEndOf="@+id/cash"
+                        android:gravity="center_vertical"
+                        android:hint=""
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/capacity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:drawableLeft="@drawable/ic_user"
+                        android:gravity="center_vertical"
+                        android:paddingEnd="10dp"
+                        android:text="1-4"
+                        android:textColor="@android:color/black"
+                        android:textSize="15dp"
+
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+
+                    <Button
+                        android:id="@+id/request"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/black_border"
+                        android:elevation="20dp"
+                        android:text="CONFIRM LAKBAY"
+                        android:textColor="@android:color/white"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/PaymentBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="1dp"
+                android:theme="@style/Base.Widget.Design.TabLayout"
+                android:visibility="gone">
+
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:text="RIDE HAS ENDED" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="46dp"
+                    android:text="Ride price:" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/textView11"
+                    android:layout_marginTop="84dp"
+                    android:text="car type:" />
+
+                <TextView
+                    android:id="@+id/tvpboxPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/textView11"
+                    android:layout_marginStart="91dp"
+                    android:text="------------------" />
+
+                <TextView
+                    android:id="@+id/tvpboxCartype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tvpboxPrice"
+                    android:layout_alignTop="@+id/textView12"
+                    android:text="------------------" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView11"
+                    android:layout_toStartOf="@+id/tvpboxPtype"
+                    android:text="Payment type:" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textView15"
+                    android:layout_alignTop="@+id/textView12"
+                    android:text="Driver name:" />
+
+                <TextView
+                    android:id="@+id/tvpboxPtype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/textView11"
+                    android:layout_marginEnd="32dp"
+                    android:text="-----------------" />
+
+                <TextView
+                    android:id="@+id/tvpboxDrname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tvpboxPtype"
+                    android:layout_alignTop="@+id/textView12"
+                    android:text="-----------------" />
+
+                <Button
+                    android:id="@+id/btnpboxPaynow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="47dp"
+                    android:text="procced to paypal" />
+
+                <TextView
+                    android:id="@+id/tvpboxifcash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="14dp"
+                    android:text="waiting for driver confirmation" />
+
+                <Button
+                    android:id="@+id/btnpboxReturn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/btnpboxPaynow"
+                    android:layout_centerHorizontal="true"
+                    android:text="RETURN"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

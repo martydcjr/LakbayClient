@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.rengwuxian.materialedittext:library-2.1.4">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-2.1.4.aar/0c856475ab14c41c43f01eb96fcc9615/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-2.1.4.aar/0c856475ab14c41c43f01eb96fcc9615/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-2.1.4.aar/0c3438055c2aa53a4f56609746e685e6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-2.1.4.aar/0c3438055c2aa53a4f56609746e685e6/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

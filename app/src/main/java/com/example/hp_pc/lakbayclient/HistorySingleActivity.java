@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -229,9 +230,9 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
     @Override
     public void onRoutingFailure(RouteException e) {
         if(e != null) {
-            Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            FancyToast.makeText(this, "Routing Failed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
         }else {
-            Toast.makeText(this, "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+            FancyToast.makeText(this, "Something went wrong, Try again", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
         }
     }
 
@@ -276,7 +277,11 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
             Polyline polyline = map.addPolyline(polyOptions);
             polylines.add(polyline);
 
-            Toast.makeText(this,"Route "+ (e+1) +": distance - "+ route.get(e).getDistanceValue()+": duration - "+ route.get(e).getDurationValue(),Toast.LENGTH_SHORT).show();
+            FancyToast.makeText(this,"Route "+ (e+1) +", " +
+                            "distance: "+ route.get(e).getDistanceValue()/1000+"Km/s, " +
+                            "duration: "+ route.get(e).getDurationValue()/60 + "Min/s",
+                    FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
+
         }
 
     }

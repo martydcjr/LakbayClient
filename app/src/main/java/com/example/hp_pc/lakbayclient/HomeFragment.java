@@ -88,6 +88,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -438,6 +439,29 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                 if (requestType == null){
                     return;
                 }
+                requestBol = true;
+                if(flag == 0 ) {
+                    FancyToast.makeText(getContext(), "Please Select Payment Method", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                } else if(flag == 1) {
+                    FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("clients_request");
+                    GeoFire geoFire = new GeoFire(userdata);
+                    geoFire.setLocation(userId, new GeoLocation(LastLocation.getLatitude(), LastLocation.getLongitude()));
+                    pickupLocation = new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude());
+                    pickupMarker = nmap.addMarker(new MarkerOptions()
+                            .position(pickupLocation)
+                            .title("Pickup Here")
+                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pickup)));
+                    driverStatus.setText("Getting your Driver...");
+                    getClosestDriver();
+
+                if (requestType == null){
+                    return;
+                }
+                } else if(flag == 2) {
+                    FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                }
 
 
                 requestBol = true;
@@ -523,13 +547,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 if(i == 0) {
-                                    Toast.makeText(getContext(), "Cash", Toast.LENGTH_SHORT).show();
+                                    FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+//                                    Toast.makeText(getContext(), "Cash", Toast.LENGTH_SHORT).show();
                                     cash.setText("Cash");
                                     pmethod = "Cash";
                                     flag = 1;
                                     ic_payment_method.setImageResource(R.drawable.ic_action_name);
                                 } else if(i == 1) {
-                                    Toast.makeText(getContext(), "Paypal", Toast.LENGTH_SHORT).show();
+                                    FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+//                                    Toast.makeText(getContext(), "Paypal", Toast.LENGTH_SHORT).show();
                                     cash.setText("Paypal");
                                     pmethod = "Paypal";
                                     flag = 2;
@@ -554,14 +580,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 if(i == 0) {
-                                    Toast.makeText(getContext(), "Cash", Toast.LENGTH_SHORT).show();
+                                    FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
                                     cash.setText("Cash");
                                     pmethod = "Cash";
                                     tvPaythrough.setText("Pay as Cash");
                                     flag = 1;
                                     ic_payment_method.setImageResource(R.drawable.ic_action_name);
                                 } else if(i == 1) {
-                                    Toast.makeText(getContext(), "Paypal", Toast.LENGTH_SHORT).show();
+                                    FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
                                     cash.setText("Paypal");
                                     pmethod = "Paypal";
                                     tvPaythrough.setText("Pay as Paypal");
@@ -769,7 +795,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
                         } else {
                             Log.d(TAG, "onComplete: Current Location is Null");
-                            Toast.makeText(getContext(), "Unable to get Current Location", Toast.LENGTH_SHORT).show();
+                            FancyToast.makeText(getContext(), "Unable to get Current Location", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
                         }
                     }
                 });
@@ -821,6 +847,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                                     map.put("destination", destination);
                                     map.put("destinationLat", destinationLatLng.latitude);
                                     map.put("destinationLng", destinationLatLng.longitude);
+                                    map.put("price", total);
                                     driverRef.updateChildren(map);
 
                                     getDriverLocation();
@@ -860,13 +887,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                     radius++;
 //                    Toast.makeText(getContext(), "radius" + radius , Toast.LENGTH_SHORT).show();
                     if (radius == 6 && !driverFound){
-                        Toast.makeText(getContext(), "No Driver Available", Toast.LENGTH_SHORT).show();
+                        FancyToast.makeText(getContext(), "No Available Driver", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
 
                     }else {
                         getClosestDriver();
                     }
                 }else {
 //                    Toast.makeText(getContext(), "Driver Found", Toast.LENGTH_SHORT).show();
+                    FancyToast.makeText(getContext(), "Driver Found", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                     driverStatus.setText("Driver Found");
                     if (driverFoundID != null){
                         updateUIThreads();
@@ -1089,7 +1117,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         client.get("https://lakbay-c65e4.firebaseapp.com/client_token", new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Toast.makeText(getActivity(), "Failure " + statusCode, Toast.LENGTH_SHORT).show();
+                FancyToast.makeText(getContext(), "Failure", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
             }
 
             @Override
@@ -1099,7 +1127,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                 try {
 
                     mBraintreeFragment = BraintreeFragment.newInstance(getActivity(), mAuthorization);
-                    Toast.makeText(getContext(), "BraintreeFragment is ready to use", Toast.LENGTH_SHORT).show();
+                    FancyToast.makeText(getContext(), "BraintreeFragment is ready to use", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                     // mBraintreeFragment is ready to use!
                 } catch (InvalidArgumentException e) {
                     // There was an issue with your authorization string.
@@ -1150,7 +1178,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         client2.post("http://10.0.2.2/braintree-php-3.33.0/checkout.php", requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Toast.makeText(getActivity(), "Success Post", Toast.LENGTH_SHORT).show();
+                FancyToast.makeText(getContext(), "Success Post", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
 
                 btnpboxPaynow.setVisibility(View.GONE);
                 btnpbozReturn.setVisibility(View.VISIBLE);
@@ -1378,6 +1406,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
             loc22.setLatitude(destinationLatLng.latitude);
             loc22.setLongitude(destinationLatLng.longitude);
 
+            float rideDistance = loc11.distanceTo(loc22) / 1000;
+
 //            float rideDistance = loc11.distanceTo(loc22) / 1000;
             String url = getDirectionsUrl(LastLocation.getLatitude(), LastLocation.getLongitude(), destinationLatLng);
             new GetDisDur().execute(url);
@@ -1386,7 +1416,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
             float basePrice = 70;
             float perKm = 10;
-            ridePrice = ((rideDistance * perKm) + basePrice);
+//            ridePrice = ((rideDistance * perKm) + basePrice);
+            ridePrice = ((dis * perKm) + basePrice);
             float r = Math.round(ridePrice)+2*3;
             total = String.format("%.2f", r);
             customerRidePrice = Double.parseDouble(total);
@@ -1408,7 +1439,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 //
             float basePrice = 160;
             float perKm = 30;
-            ridePrice = ((rideDistance*perKm)+basePrice);
+            ridePrice = ((dis*perKm)+basePrice);
             float r = Math.round(ridePrice)+2*3;
             total = String.format("%.2f", r);
             customerRidePrice = Double.parseDouble(total);
@@ -1429,7 +1460,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
             float basePrice = 110;
             float perKm = 15;
-            ridePrice = ((rideDistance*perKm)+basePrice);
+            ridePrice = ((dis*perKm)+basePrice);
             float r = Math.round(ridePrice)+2*3;
             total = String.format("%.2f", r);
             customerRidePrice = Double.parseDouble(total);
@@ -1523,7 +1554,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Toast.makeText(getContext(), "Map is ready", Toast.LENGTH_SHORT).show();
+        FancyToast.makeText(getContext(), "Map is ready", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
         Log.d(TAG, "onMapReady: Map is Ready");
         nmap = googleMap;
 
@@ -1739,9 +1770,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
     @Override
     public void onRoutingFailure(RouteException e) {
         if(e != null) {
-            Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            FancyToast.makeText(getContext(), "Routing Failed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
         }else {
-            Toast.makeText(getContext(), "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+            FancyToast.makeText(getContext(), "Something went wrong, Try again", FancyToast.LENGTH_SHORT, FancyToast.CONFUSING, false).show();
         }
     }
 
@@ -1749,6 +1780,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
     public void onRoutingStart() {
 
     }
+    float dis;
 
     @Override
     public void onRoutingSuccess(ArrayList<Route> route, int i) {
@@ -1774,9 +1806,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
             polyOptions.addAll(route.get(e).getPoints());
             Polyline polyline = nmap.addPolyline(polyOptions);
             polylines.add(polyline);
-
-            Toast.makeText(getContext(),"Route "+ (e+1) +": distance - "+ route.get(e).getDistanceValue()+": duration - "+ route.get(e).getDurationValue(),Toast.LENGTH_SHORT).show();
-
+            float d = route.get(e).getDistanceValue();
+            dis = d/1000;
+            FancyToast.makeText(getContext(),"Route "+ (e+1) +", " +
+                            "distance: "+  dis +" Km/s, " +
+                            "duration: "+ route.get(e).getDurationValue() + "Min/s",
+                    FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
             computeFare("singleRide");
         }
 

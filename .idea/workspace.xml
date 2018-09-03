@@ -6,9 +6,7 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bd613e9-9976-48f5-8ec7-38c25efcad50" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hp_pc/lakbayclient/HomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hp_pc/lakbayclient/HomeFragment.java" />
-    </list>
+    <list default="true" id="5bd613e9-9976-48f5-8ec7-38c25efcad50" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +31,8 @@
       <file leaf-file-name="HomeFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/hp_pc/lakbayclient/HomeFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="1816" column="0" lean-forward="true" selection-start-line="1816" selection-start-column="0" selection-end-line="1816" selection-end-column="0" />
+            <state relative-caret-position="733">
+              <caret line="1816" column="0" lean-forward="false" selection-start-line="1816" selection-start-column="0" selection-end-line="1816" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#10940#13041#0" expanded="true" />
@@ -2417,8 +2415,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/hp_pc/lakbayclient/HomeFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="1816" column="0" lean-forward="true" selection-start-line="1816" selection-start-column="0" selection-end-line="1816" selection-end-column="0" />
+        <state relative-caret-position="733">
+          <caret line="1816" column="0" lean-forward="false" selection-start-line="1816" selection-start-column="0" selection-end-line="1816" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#10940#13041#0" expanded="true" />

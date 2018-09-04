@@ -1175,7 +1175,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         RequestParams requestParams = new RequestParams(paramsHash);
 
         AsyncHttpClient client2 = new AsyncHttpClient();
-        client2.post("http://10.0.2.2/braintree-php-3.33.0/checkout.php", requestParams, new AsyncHttpResponseHandler() {
+        client2.post("https://lakbay-c65e4.firebaseapp.com/checkout", requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 FancyToast.makeText(getContext(), "Success Post", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.directions.route.AbstractRouting;
@@ -230,10 +231,8 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
     public void onRoutingFailure(RouteException e) {
         if(e != null) {
             FancyToast.makeText(this, "Routing Failed", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
-
         }else {
             FancyToast.makeText(this, "Something went wrong, Try again", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
-
         }
     }
 
@@ -279,8 +278,8 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
             polylines.add(polyline);
 
             FancyToast.makeText(this,"Route "+ (e+1) +", " +
-                    "distance: "+ route.get(e).getDistanceValue()/1000+"Km/s, " +
-                    "duration: "+ route.get(e).getDurationValue()/60 + "Min/s",
+                            "distance: "+ route.get(e).getDistanceValue()/1000+"Km/s, " +
+                            "duration: "+ route.get(e).getDurationValue()/60 + "Min/s",
                     FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
 
         }

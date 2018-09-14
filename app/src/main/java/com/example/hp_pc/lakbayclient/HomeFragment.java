@@ -11,7 +11,10 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -88,11 +91,15 @@ import com.loopj.android.http.TextHttpResponseHandler;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -158,6 +165,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
     private RatingBar mRatingBar;
 
     private String destination;
+    private String pickupAddress;
 
     private String userUID;
 
@@ -417,6 +425,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         });
 
 
+
         nrequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -433,14 +442,46 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                 if (requestType == null){
                     return;
                 }
+<<<<<<< HEAD
+=======
+                requestBol = true;
+                if(flag == 0 ) {
+                    FancyToast.makeText(getContext(), "Please Select Payment Method", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+                } else if(flag == 1) {
+                    FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                    DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("clients_request");
+                    GeoFire geoFire = new GeoFire(userdata);
+                    geoFire.setLocation(userId, new GeoLocation(LastLocation.getLatitude(), LastLocation.getLongitude()));
+                    pickupLocation = new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude());
+                    pickupMarker = nmap.addMarker(new MarkerOptions()
+                            .position(pickupLocation)
+                            .title("Pickup Here")
+                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pickup)));
+                    driverStatus.setText("Getting your Driver...");
+                    getClosestDriver();
+
+                    if (requestType == null){
+                        return;
+                    }
+                } else if(flag == 2) {
+                    FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+                }
+>>>>>>> master
 
 
                 requestBol = true;
 
                 if(flag == 0 ) {
+<<<<<<< HEAD
                     FancyToast.makeText(getContext(), "Please Select Payment Method", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
                 } else if(flag == 1) {
                     FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+=======
+                    Toast.makeText(getContext(), "please select payment method", Toast.LENGTH_SHORT).show();
+                } else if(flag == 1) {
+                    Toast.makeText(getContext(), "cash payment selected", Toast.LENGTH_SHORT).show();
+>>>>>>> master
 
                     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                     DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("clients_request");
@@ -458,8 +499,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                     getClosestDriver();
 
                 } else if(flag == 2) {
+<<<<<<< HEAD
                     FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
+=======
+                    Toast.makeText(getContext(), "paypal payment selected", Toast.LENGTH_SHORT).show();
+>>>>>>> master
                 }
 
 
@@ -474,6 +519,28 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                         .title("Pickup Here")
                         .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_pickup)));
 
+<<<<<<< HEAD
+=======
+                ////////////////// convert latlng to address
+
+                Geocoder geocoder;
+                List<Address> addresses = null;
+                geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+                try {
+                    addresses = geocoder.getFromLocation(LastLocation.getLatitude(), LastLocation.getLongitude(), 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//                String city = addresses.get(0).getLocality();
+//                String state = addresses.get(0).getAdminArea();
+
+                pickupAddress = address;
+                //////////////////
+
+>>>>>>> master
                 driverStatus.setText("Getting your Driver...");
 
                 getClosestDriver();
@@ -520,12 +587,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
                                 if(i == 0) {
                                     FancyToast.makeText(getContext(), "Cash Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+//                                    Toast.makeText(getContext(), "Cash", Toast.LENGTH_SHORT).show();
                                     cash.setText("Cash");
                                     pmethod = "Cash";
                                     flag = 1;
                                     ic_payment_method.setImageResource(R.drawable.ic_action_name);
                                 } else if(i == 1) {
                                     FancyToast.makeText(getContext(), "Paypal Payment Selected", FancyToast.LENGTH_SHORT, FancyToast.INFO, false).show();
+//                                    Toast.makeText(getContext(), "Paypal", Toast.LENGTH_SHORT).show();
                                     cash.setText("Paypal");
                                     pmethod = "Paypal";
                                     flag = 2;
@@ -763,6 +832,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                                     "My Location");
 
 
+
                         } else {
                             Log.d(TAG, "onComplete: Current Location is Null");
                             FancyToast.makeText(getContext(), "Unable to get Current Location", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
@@ -810,10 +880,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                                     driverFoundID = dataSnapshot.getKey();
                                     pboxdriverID = dataSnapshot.getKey();
 
+
+
                                     DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference().child("drivers").child(driverFoundID).child("client_request");
                                     String customerID = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     HashMap map = new HashMap();
                                     map.put("customerRideID", customerID);
+                                    map.put("pickupAddress", pickupAddress);
                                     map.put("destination", destination);
                                     map.put("destinationLat", destinationLatLng.latitude);
                                     map.put("destinationLng", destinationLatLng.longitude);
@@ -856,12 +929,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                 if (!driverFound){
                     radius++;
 //                    Toast.makeText(getContext(), "radius" + radius , Toast.LENGTH_SHORT).show();
-                    if (radius == 6 && !driverFound){
+                    if (radius == 5 && !driverFound){
                         FancyToast.makeText(getContext(), "No Available Driver", FancyToast.LENGTH_SHORT, FancyToast.WARNING, false).show();
+
                     }else {
                         getClosestDriver();
                     }
                 }else {
+//                    Toast.makeText(getContext(), "Driver Found", Toast.LENGTH_SHORT).show();
                     FancyToast.makeText(getContext(), "Driver Found", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
                     driverStatus.setText("Driver Found");
                     if (driverFoundID != null){
@@ -976,11 +1051,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
             tvpboxifcash.setVisibility(View.VISIBLE);
             tvpboxifcash.setText("Cash payment. Waiting for driver confirmation.");
             tvpboxPtype.setText(pmethod);
+            setPayPending();
         } else if(pmethod.equalsIgnoreCase("Paypal")) {
             btnpboxPaynow.setVisibility(View.VISIBLE);
             tvpboxifcash.setVisibility(View.VISIBLE);
             tvpboxifcash.setText("Paypal payment. Proceed to paypal UI.");
             tvpboxPtype.setText(pmethod);
+            setPayPending();
         }
         getToken();
         DatabaseReference getPendingData = FirebaseDatabase.getInstance().getReference().child("pending").child(pboxdriverID).child("price_to_pay");
@@ -1012,10 +1089,75 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         });
 
     }
+    DatabaseReference getCurrentRide;
+    ValueEventListener getCurrentRideListener;
+    String ID1;
+    private String setRideID;
+    private void setPayPending() {
+        final String[] thisisRideID = new String[1];
+        getCurrentRide = FirebaseDatabase.getInstance().getReference().child("clients").child(userUID);
+//        getCurrentRideListener = getCurrentRide.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String keyID = dataSnapshot.child("current_ride_id").getValue(String.class);
+//
+//                ID1 = keyID;
+//                setRideID = dataSnapshot.child("current_ride_id").getValue(String.class);
+//
+////                Toast.makeText(getContext(), "setRideID: " + setRideID, Toast.LENGTH_SHORT).show();
+//
+////                Toast.makeText(getContext(), "keyID: " + keyID, Toast.LENGTH_SHORT).show();
+//
+////                DatabaseReference setPending = FirebaseDatabase.getInstance().getReference().child("clients").child(userUID).child("pay_in_pending").child(keyID);
+////
+////                HashMap map = new HashMap();
+////                map.put("payment_method", pmethod);
+////                map.put("payment_status", "unpaid");
+////
+////                setPending.updateChildren(map);
+//
+//                turnToPaid(false);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
+//        ValueEventListener setRideListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                setRidenga[0] = (String) dataSnapshot.child("current_ride_id").getValue();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        };
+//        getCurrentRide.addValueEventListener(setRideListener);
+
+        getCurrentRide.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String keyID = dataSnapshot.child("current_ride_id").getValue(String.class);
+
+                ID1 = keyID;
+                setRideID = dataSnapshot.child("current_ride_id").getValue(String.class);
+
+                turnToPaid(false);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getToken() {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("http://10.0.2.2/braintree-php-3.33.0/client_token.php", new TextHttpResponseHandler() {
+        client.get("https://lakbay-c65e4.firebaseapp.com/client_token", new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 FancyToast.makeText(getContext(), "Failure", FancyToast.LENGTH_SHORT, FancyToast.ERROR, false).show();
@@ -1076,7 +1218,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         RequestParams requestParams = new RequestParams(paramsHash);
 
         AsyncHttpClient client2 = new AsyncHttpClient();
-        client2.post("http://10.0.2.2/braintree-php-3.33.0/checkout.php", requestParams, new AsyncHttpResponseHandler() {
+        client2.post("https://lakbay-c65e4.firebaseapp.com/checkout", requestParams, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 FancyToast.makeText(getContext(), "Success Post", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
@@ -1089,6 +1231,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
 
                     tvpboxifcash.setText("Success. ID: " + str);
 
+                    if(str.contains("Success")) {
+                        turnToPaid(true);
+                    }
                     DatabaseReference updatePayment = FirebaseDatabase.getInstance().getReference().child("payments").child(userUID);
 
                     String requestID = updatePayment.push().getKey();
@@ -1100,6 +1245,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                     map.put("push_date", ServerValue.TIMESTAMP);
 
                     updatePayment.child(requestID).updateChildren(map);
+
+//                    turnToPaid();
+
+                    DatabaseReference updatePerClient = FirebaseDatabase.getInstance().getReference().child("clients").child(userUID).child("pay_in_pending").child(setRideID);
+                    HashMap map2 = new HashMap();
+                    map2.put("payment_status", "paid");
+
+                    updatePerClient.updateChildren(map2);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -1119,6 +1272,26 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                 paymentBoxLayout.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void turnToPaid(Boolean x) {
+        if(x) {
+            DatabaseReference updatePerClient = FirebaseDatabase.getInstance().getReference().child("clients").child(userUID).child("pay_in_pending").child(setRideID);
+            HashMap map2 = new HashMap();
+            map2.put("payment_status", "paid");
+
+            updatePerClient.updateChildren(map2);
+        } else {
+            DatabaseReference setPending = FirebaseDatabase.getInstance().getReference().child("clients").child(userUID).child("pay_in_pending").child(setRideID);
+//
+            HashMap map = new HashMap();
+            map.put("payment_method", pmethod);
+            map.put("payment_status", "unpaid");
+
+            setPending.updateChildren(map);
+
+            Toast.makeText(getContext(), "Pay First", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void endRide(){
@@ -1268,14 +1441,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
             loc11.setLatitude(LastLocation.getLatitude());
             loc11.setLongitude(LastLocation.getLongitude());
 
+//            Location from = new Location("");
+//            from.setLatitude(pickupLocation.latitude);
+//            from.setLongitude(pickupLocation.longitude);
+
             Location loc22 = new Location("");
             loc22.setLatitude(destinationLatLng.latitude);
             loc22.setLongitude(destinationLatLng.longitude);
 
             float rideDistance = loc11.distanceTo(loc22) / 1000;
 
+//            float rideDistance = loc11.distanceTo(loc22) / 1000;
+            String url = getDirectionsUrl(LastLocation.getLatitude(), LastLocation.getLongitude(), destinationLatLng);
+            new GetDisDur().execute(url);
+
+            Toast.makeText(getContext(), "rideDistance: " + rideDistance, Toast.LENGTH_SHORT).show();
+
             float basePrice = 70;
             float perKm = 10;
+//            ridePrice = ((rideDistance * perKm) + basePrice);
             ridePrice = ((dis * perKm) + basePrice);
             float r = Math.round(ridePrice)+2*3;
             total = String.format("%.2f", r);
@@ -1331,6 +1515,73 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
         }
     }
 
+    private String getDirectionsUrl(double originlat, double originlong, LatLng dest) {
+        String str_origin = "origin=" + originlat + "," + originlong;
+
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+
+        String sensor = "sensor=false";
+
+        String mode = "mode=driving";
+
+        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&" + mode;
+
+        String output = "json";
+
+        return "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters +"&key=";
+    }
+
+    private class GetDisDur extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... url) {
+
+            String data = "";
+
+            try {
+                data = downloadUrl(url[0]);
+            } catch (Exception e) {
+                Log.d("Background Task", e.toString());
+            }
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+
+                JSONArray routes = jsonObject.getJSONArray("routes");
+
+                JSONObject routes1 = routes.getJSONObject(0);
+
+                JSONArray legs = routes1.getJSONArray("legs");
+
+                JSONObject legs1 = legs.getJSONObject(0);
+
+                JSONObject distance = legs1.getJSONObject("distance");
+
+                JSONObject duration = legs1.getJSONObject("duration");
+
+                String distanceText = distance.getString("text");
+
+                rideDistance = Float.parseFloat(String.valueOf(distance));
+
+//                durationText = duration.getString("text");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private String downloadUrl(String s) {
+        return s;
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -1361,6 +1612,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
             buildGoogleApiClient();
             nmap.setMyLocationEnabled(true);
             nmap.getUiSettings().setMyLocationButtonEnabled(false);
+            nmap.getUiSettings().setMapToolbarEnabled(false);
 //            nmap.getUiSettings().setCompassEnabled(true);
 
 //            init();
@@ -1572,8 +1824,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
     public void onRoutingStart() {
 
     }
-
     float dis;
+
     @Override
     public void onRoutingSuccess(ArrayList<Route> route, int i) {
 
@@ -1604,7 +1856,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,GoogleA
                             "distance: "+  dis +" Km/s, " +
                             "duration: "+ route.get(e).getDurationValue() + "Min/s",
                     FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
-
             computeFare("singleRide");
         }
 

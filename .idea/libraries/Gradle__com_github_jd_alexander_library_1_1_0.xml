@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jd-alexander:library-1.1.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/ab31c7d4f0b3e2faf293c09b9967652a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/ab31c7d4f0b3e2faf293c09b9967652a/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/9731553a84fa57e372979d9fecd71039/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/9731553a84fa57e372979d9fecd71039/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

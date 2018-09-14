@@ -1,9 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: com.paypal.android.sdk:data-collector-2.16.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/c37a2a613db6ae4b68c338d0d777da9c/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/c37a2a613db6ae4b68c338d0d777da9c/jars/libs/paypal-data-collector-3.1.6.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/c37a2a613db6ae4b68c338d0d777da9c/jars/classes.jar!/" />
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/d38c2d33fa64f6800850f90d5edd7275/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/d38c2d33fa64f6800850f90d5edd7275/jars/libs/paypal-data-collector-3.1.6.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/data-collector-2.16.0.aar/d38c2d33fa64f6800850f90d5edd7275/jars/classes.jar!/" />
+>>>>>>> 884bfe7c90f8d867bd1d415bfa2dee2658ba682b
     </CLASSES>
     <JAVADOC />
     <SOURCES>
